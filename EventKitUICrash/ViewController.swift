@@ -15,12 +15,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // You should set different timezone from your system timezone.
         NSTimeZone.default = NSTimeZone(name: "Europe/Vienna") as! TimeZone
+
         let store = EKEventStore()
         store.requestAccess(to: .event) { _, _ in
             let event = EKEvent(eventStore: store)
             event.startDate = Date()
-            event.endDate = Date(timeIntervalSinceNow: 86400*2)
+            event.endDate = Date()
             event.timeZone = NSTimeZone.default
             event.isAllDay = true
             let viewController = EKEventEditViewController()
